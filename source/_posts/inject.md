@@ -264,7 +264,7 @@ console.log(instance.inject('age'))
 console.log(instance.inject('username'))
 ```
 
-##应用场景（妙用）
+## 应用场景（妙用）
 
 重点来了，了解完原理之后我们来看下`Provide / Inject`的应用场景，如何来代替现在的状态管理工具`Vuex`呢？
 
