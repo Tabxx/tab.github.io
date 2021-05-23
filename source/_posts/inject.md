@@ -9,7 +9,7 @@ cover: 'top.jpg'
 
 说起Vue的状态管理工具，应该大部分人都会想到Vuex，毕竟是官方提供的工具，但是都进入Vue3时代了，不会还有人不知道依赖注入吧。
 为什么会突然提到依赖注入呢？跟状态管理工具有什么关系呢？
-当然有关系，关系还很特别呢，特别的绿茶。因为依赖注入在Vue3中可以替代Vuex。我们知道Vue3提供的ref/reactive API具有组件解耦的特性，也就是说我们可以在组件之外创建响应式数据，这么一来跨组件共享数据的需求就在Vue3新框架内部得到了解决。
+当然有关系，因为依赖注入在Vue3中可以替代Vuex。我们知道Vue3提供的ref/reactive API具有组件解耦的特性，也就是说我们可以在组件之外创建响应式数据，这么一来跨组件共享数据的需求就在Vue3新框架内部得到了解决。
 
 
 
@@ -21,9 +21,8 @@ Provide / Inject不是什么新的api，在Vue2的时候就已经存在了，只
 
 ![components_provide](components_provide.png)
 
-我们理解一些官方给出的示例图，粗暴点来说就是父组件注入一些数据，所有子组件不管嵌套有多深都能直接获取到这些数据。从乡下人的角度来说就是一人得道鸡犬升天，就好比爷爷有钱了，爸爸也跟富裕了，孙子呢撒个娇零花钱也到手了。
+我们理解一些官方给出的示例图，粗暴点来说就是父组件注入一些数据，所有子组件不管嵌套有多深都能直接获取到这些数据。
 
-![](mq.jpg)
 
 
 ## Provide / Inject 使用方式
@@ -424,7 +423,7 @@ export default defineComponent({
 
 
 
-
+<div class="aplayer no-destroy" data-id="热门" data-server="tencent" data-type="search" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div>
 
 
 
