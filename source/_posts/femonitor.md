@@ -2,6 +2,7 @@
 title: 前端异常监控平台
 date: 2021-08-09 20:25:00
 cover: 'IMG_2992.jpeg'
+tags: 前端运维
 ---
 
 
@@ -649,3 +650,4 @@ if(data.type === 1) { // 运行时异常
 ​
 
 
+<div class="aplayer no-destroy" data-id="热门" data-server="tencent" data-type="search" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div>

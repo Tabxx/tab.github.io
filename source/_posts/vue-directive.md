@@ -2,6 +2,7 @@
 title: vue自定义指令的魅力
 date: 2019-11-11 10:38:31
 cover: '2701794-250949a6bda06b20.png'
+tags: Vue
 ---
 
 ## vue自定义指令的魅力

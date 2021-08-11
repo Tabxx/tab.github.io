@@ -2,6 +2,7 @@
 title: vue-cli-service
 date: 2019-09-05 09:46:34
 cover: 'topbg.jpg'
+tags: CLI
 ---
 
 

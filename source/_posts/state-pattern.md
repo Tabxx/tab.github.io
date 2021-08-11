@@ -2,6 +2,7 @@
 title: 状态模式
 date: 2019-09-26 14:57:23
 cover: 'rollingLoad.png'
+tags: 设计模式
 ---
 
 ## 状态模式
