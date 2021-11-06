@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>性能优化之SSR初体验 | Tab</title><meta name="keywords" content="SSR"><meta name="author" content="Tab"><meta name="copyright" content="Tab"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="性能优化之SSR初体验SSR是什么？ Server Side Render简称SSR。具体指html页面内容通过服务端渲染生成，浏览器接收到服务器响应时直接显示对应的内容就可以了。   了解完SSR就必须知道和它相爱相杀的CSR。CSR全称Client Side Render，页面上的内容是js动态渲染出来的（Vue、React等框架），服务端只返回一个html模板，其余渲染在浏览器完成。  SS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能优化之SSR初体验">
+<meta property="og:url" content="https://tabxx.github.io/tab.github.io/2021/07/08/ssr/index.html">
+<meta property="og:site_name" content="Tab">
+<meta property="og:description" content="性能优化之SSR初体验SSR是什么？ Server Side Render简称SSR。具体指html页面内容通过服务端渲染生成，浏览器接收到服务器响应时直接显示对应的内容就可以了。   了解完SSR就必须知道和它相爱相杀的CSR。CSR全称Client Side Render，页面上的内容是js动态渲染出来的（Vue、React等框架），服务端只返回一个html模板，其余渲染在浏览器完成。  SS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tabxx.github.io/tab.github.io/2021/07/08/ssr/ssr.jpg">
+<meta property="article:published_time" content="2021-07-08T06:37:22.000Z">
+<meta property="article:modified_time" content="2021-08-10T12:36:30.999Z">
+<meta property="article:author" content="Tab">
+<meta property="article:tag" content="SSR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tabxx.github.io/tab.github.io/2021/07/08/ssr/ssr.jpg"><link rel="shortcut icon" href="/tab.github.io/images/favicon.ico"><link rel="canonical" href="https://tabxx.github.io/tab.github.io/2021/07/08/ssr/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tab.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?050bcda3cb147a8c0de1c17a337c5466";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/tab.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '性能优化之SSR初体验',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-10 20:36:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/tab.github.io/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tab.github.io/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/tab.github.io/2021/07/08/ssr/ssr.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/tab.github.io/">Tab</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">性能优化之SSR初体验</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-08T06:37:22.000Z" title="发表于 2021-07-08 14:37:22">2021-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-10T12:36:30.999Z" title="更新于 2021-08-10 20:36:30">2021-08-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="性能优化之SSR初体验"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="性能优化之SSR初体验"><a href="#性能优化之SSR初体验" class="headerlink" title="性能优化之SSR初体验"></a>性能优化之SSR初体验</h2><h3 id="SSR是什么？"><a href="#SSR是什么？" class="headerlink" title="SSR是什么？"></a>SSR是什么？</h3><blockquote>
+<p>Server Side Render简称SSR。具体指html页面内容通过服务端渲染生成，浏览器接收到服务器响应时直接显示对应的内容就可以了。</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="ssr.jpg" alt="ssr"></p>
+<p>了解完<code>SSR</code>就必须知道和它相爱相杀的<code>CSR</code>。<code>CSR</code>全称<code>Client Side Render</code>，页面上的内容是js动态渲染出来的（<code>Vue</code>、<code>React</code>等框架），服务端只返回一个html模板，其余渲染在浏览器完成。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="csr.jpg" alt="csr"></p>
+<p><code>SSR</code>也不算是一个新的概念，早期的后端<code>PHP</code>、<code>JAVA</code>就已经支持服务端渲染，美其名曰<code>模板引擎</code>，如<code>phtml</code>、<code>jsp</code>、<code>jade</code>等。最近几年前端工程化的日渐成熟，前后端开始分离，将原本的<code>SSR</code>模式转变成了<code>CSR</code>。同时也带来了一些性能上的缺陷以及<code>SEO</code>问题等等。</p>
+<h3 id="SSR优劣势"><a href="#SSR优劣势" class="headerlink" title="SSR优劣势"></a>SSR优劣势</h3><p>对比上面两张图<code>SSR</code>的优势很明显，在进行到第二阶段下载<code>js</code>文件时页面已经呈现，而<code>CSR</code>需要到第四阶段可交互时才显示页面。这对于<strong>首屏性能</strong>和**搜索引擎<code>SEO</code>**有着天然的好处。</p>
+<p>当然<code>SSR</code>的劣势不小，对于现有的<code>Vue</code>或者<code>React</code>项目迁移成本很大；消耗服务器资源；框架生态支持不太完美。</p>
+<p>从个人经验上来说，除非对项目首屏性能或者<code>SEO</code>有比较高的要求且可以容忍它的副作用时才使用，否则不建议直接使用<code>SSR</code>来开发项目。</p>
+<h3 id="SSR-实现的本质-虚拟dom"><a href="#SSR-实现的本质-虚拟dom" class="headerlink" title="SSR 实现的本质-虚拟dom"></a>SSR 实现的本质-虚拟dom</h3><p>首先在<code>SSR</code>工程中，<code>Vue</code>代码（本文以vue举例，其他框架同理）会在客户端和服务端各执行一次。为什么会各执行一次呢？因为页面需要在服务端渲染完成再返回给浏览器，因此就必须在服务端先执行一次。还有一个问题就是服务端是怎么运行<code>Vue</code>代码的？这一点你可能觉得很好理解，毕竟<code>Node</code>也是基于<code>JavaScript</code>开发的，能够运行很正常。但是如果代码中涉及到<code>dom</code>的操作在<code>Node</code>环境是不支持的，<code>Node</code>环境下没有<code>DOM</code>的概念，甚至没有<code>window</code>这个全局变量的存在。</p>
+<p>因此服务端直接操作<code>Dom</code>肯定是不现实的，好在<code>Vue</code>框架有一个虚拟<code>Dom</code>的概念。虚拟<code>Dom</code>是真实<code>Dom</code>的映射，简单理解为就是一个普通的js对象，我们在用<code>Vue</code>操作页面时其实操作的都是这个js对象，而非真实的<code>Dom</code>，这就使得<code>SSR</code>成为了可能。</p>
+<p>经过上述分析，我们就能分析出所谓的服务端渲染就是在服务端完成虚拟<code>Dom</code>的组装，浏览器只要将虚拟<code>Dom</code>转换成真实<code>Dom</code>就可以了。相比<code>CSR</code> 的请求数据-&gt;组装虚拟<code>Dom</code>-&gt;渲染，少了两步，少的这两步都在服务端完成，且性能比用户浏览器更好。</p>
+<p>那为什么说性能会更好呢？个人觉得主要有两个原因，首先服务器的性能比用户本地系统要好，而且不考虑money的情况下，可以一直加配置。其次服务器请求接口数据，远比用户浏览器发起<code>http</code>请求快的多。因为服务器请求是直接请求集群的，没有多余的<code>DNS</code>等解析过程，而且不受用户本地网络的影响。</p>
+<h3 id="SSR实战-大数据表格渲染"><a href="#SSR实战-大数据表格渲染" class="headerlink" title="SSR实战-大数据表格渲染"></a>SSR实战-大数据表格渲染</h3><h4 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h4><ul>
+<li>Vue-cli3</li>
+<li>Nuxt</li>
+<li>koa (用于模拟接口数据)</li>
+</ul>
+<h4 id="1-模拟接口数据"><a href="#1-模拟接口数据" class="headerlink" title="1. 模拟接口数据"></a>1. 模拟接口数据</h4><p>模拟数据来自某顺的爱基金数据，接口采用读取本地文件的形式，不采用爬虫的形式实时抓取（保护下数据源的安全）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">&#x27;koa&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&#x27;koa-router&#x27;</span>)();</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">&#x27;koa-cors&#x27;</span>);</span><br><span class="line"><span class="comment">// 解决跨域问题</span></span><br><span class="line">app.use(cors());</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&#x27;/jijin&#x27;</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line">    <span class="comment">// 读取本地json文件作为接口响应数据</span></span><br><span class="line">	<span class="keyword">const</span> data = fs.readFileSync(<span class="string">&#x27;jijin.json&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line">	ctx.body = data;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(router.routes());</span><br><span class="line">app.listen(<span class="number">5000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;app started at port 5000...&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-基于Vue-cli3-element-UI搭建一个表格"><a href="#2-基于Vue-cli3-element-UI搭建一个表格" class="headerlink" title="2. 基于Vue-cli3  + element UI搭建一个表格"></a>2. 基于Vue-cli3  + element UI搭建一个表格</h4><p>核心代码如下，其余部分代码参考<a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/">Vue CLI </a> 和 <a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/installation">Element</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-table</span><br><span class="line">      :data&#x3D;&quot;tableData&quot;</span><br><span class="line">      height&#x3D;&quot;500px&quot;</span><br><span class="line">      style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        type&#x3D;&quot;index&quot;</span><br><span class="line">        label&#x3D;&quot;序号&quot;</span><br><span class="line">        fixed</span><br><span class="line">        width&#x3D;&quot;100&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;code&quot;</span><br><span class="line">        label&#x3D;&quot;代码&quot;</span><br><span class="line">        fixed</span><br><span class="line">        width&#x3D;&quot;100&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;SYENDDATE&quot;</span><br><span class="line">        label&#x3D;&quot;更新日期&quot;</span><br><span class="line">        fixed</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F005&quot;</span><br><span class="line">        label&#x3D;&quot;F005&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F008&quot;</span><br><span class="line">        label&#x3D;&quot;F008&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F009&quot;</span><br><span class="line">        label&#x3D;&quot;F009&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F010&quot;</span><br><span class="line">        label&#x3D;&quot;F010&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F011&quot;</span><br><span class="line">        label&#x3D;&quot;F011&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F012&quot;</span><br><span class="line">        label&#x3D;&quot;F012&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;net&quot;</span><br><span class="line">        label&#x3D;&quot;net&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;net1&quot;</span><br><span class="line">        label&#x3D;&quot;net1&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">       &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;prerate&quot;</span><br><span class="line">        label&#x3D;&quot;prerate&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;typename&quot;</span><br><span class="line">        label&#x3D;&quot;类型&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;&#x2F;el-table&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;App&#39;,</span><br><span class="line">  </span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      tableData: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  created() &#123;</span><br><span class="line">    this.getData();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    getData() &#123;</span><br><span class="line">      fetch(&#39;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;jijin&#39;).then(res &#x3D;&gt; &#123;</span><br><span class="line">        return res.json();</span><br><span class="line">      &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">        const &#123; data &#125; &#x3D; res.data;</span><br><span class="line">        const MAX_LIST &#x3D; 200;	&#x2F;&#x2F; 数据太多控制下数量</span><br><span class="line">        let i &#x3D; 0;</span><br><span class="line">          </span><br><span class="line">        this.tableData &#x3D; [];</span><br><span class="line">        for(let key in data) &#123;</span><br><span class="line">          if(i &#x3D;&#x3D;&#x3D; MAX_LIST) &#123;</span><br><span class="line">            break;</span><br><span class="line">          &#125;</span><br><span class="line">          this.tableData.push(data[key]);</span><br><span class="line">          i++;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="bt.gif" alt="运行效果"></p>
+<h4 id="3-nuxt-改造表格实现SSR"><a href="#3-nuxt-改造表格实现SSR" class="headerlink" title="3. nuxt 改造表格实现SSR"></a>3. nuxt 改造表格实现SSR</h4><p><code>nuxt.js</code> 食用方式见<a target="_blank" rel="noopener" href="https://www.nuxtjs.cn/">Nuxt.js - Vue.js 通用应用框架 | Nuxt.js 中文网 (nuxtjs.cn)</a></p>
+<p><code>nuxt</code>的代码结构与<code>Vue-cli</code>差别不大，不需要过多的改动（仅限于简单demo项目，复杂项目迁移是比较麻烦的），所以只需要实现服务端异步获取数据这个逻辑即可。</p>
+<p><code>nuxt</code>提供了服务端异步获取数据的方法<code>asyncData</code>，但是有局限性只适用于页面级组件，肤浅的理解就是项目<code>pages</code>目录下的组件，具体实现如下：</p>
+<p><code>pages/Index.vue</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;Tutorial :tableData2&#x3D;&quot;tableData&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      tableData: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 异步获取数据，并传递给子组件</span><br><span class="line">  async asyncData() &#123;</span><br><span class="line">    return await fetch(&#39;http:&#x2F;&#x2F;localhost:5000&#x2F;jijin&#39;).then(res &#x3D;&gt; &#123;</span><br><span class="line">        return res.json();</span><br><span class="line">      &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">        let tableData &#x3D; [];</span><br><span class="line">        const &#123; data &#125; &#x3D; res.data;</span><br><span class="line">        let i &#x3D; 0;</span><br><span class="line">        const MAX_LIST &#x3D; 200;</span><br><span class="line">        for(let key in data) &#123;</span><br><span class="line">          if(i &#x3D;&#x3D;&#x3D; MAX_LIST) &#123;</span><br><span class="line">            break;</span><br><span class="line">          &#125;</span><br><span class="line">          tableData.push(data[key]);</span><br><span class="line">          i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;</span><br><span class="line">          tableData</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>components/Tutorial.vue</code>，该组件是在浏览器执行，因为上级页面组件已经在服务端取到了数据，所以不需要调用接口，直接通过<code>props</code>获取数据渲染即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-table</span><br><span class="line">      :data&#x3D;&quot;tableData2&quot;</span><br><span class="line">      height&#x3D;&quot;500px&quot;</span><br><span class="line">      style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        type&#x3D;&quot;index&quot;</span><br><span class="line">        label&#x3D;&quot;序号&quot;</span><br><span class="line">        fixed</span><br><span class="line">        width&#x3D;&quot;100&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;code&quot;</span><br><span class="line">        label&#x3D;&quot;代码&quot;</span><br><span class="line">        fixed</span><br><span class="line">        width&#x3D;&quot;100&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;SYENDDATE&quot;</span><br><span class="line">        label&#x3D;&quot;更新日期&quot;</span><br><span class="line">        fixed</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F005&quot;</span><br><span class="line">        label&#x3D;&quot;F005&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F008&quot;</span><br><span class="line">        label&#x3D;&quot;F008&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F009&quot;</span><br><span class="line">        label&#x3D;&quot;F009&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F010&quot;</span><br><span class="line">        label&#x3D;&quot;F010&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F011&quot;</span><br><span class="line">        label&#x3D;&quot;F011&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;F012&quot;</span><br><span class="line">        label&#x3D;&quot;F012&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;net&quot;</span><br><span class="line">        label&#x3D;&quot;net&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;net1&quot;</span><br><span class="line">        label&#x3D;&quot;net1&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">       &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;prerate&quot;</span><br><span class="line">        label&#x3D;&quot;prerate&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;typename&quot;</span><br><span class="line">        label&#x3D;&quot;类型&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;&#x2F;el-table&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: [&#39;tableData2&#39;],</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="ssr.gif" alt="运行效果"></p>
+<h4 id="4-对比结果"><a href="#4-对比结果" class="headerlink" title="4. 对比结果"></a>4. 对比结果</h4><ul>
+<li><p>未优化的表格有很长时间的空态，<code>SSR</code>优化后感知不到空态</p>
+</li>
+<li><p><code>ssr</code>优化后页面html文件请求速度变慢，但是页面展现数据速度有很大提升</p>
+</li>
+<li><p>性能数据(<code>finish_time</code>)没有太大改善，只是用户体验上提升了</p>
+</li>
+</ul>
+<h3 id="一些想法"><a href="#一些想法" class="headerlink" title="一些想法"></a>一些想法</h3><ul>
+<li><code>SSR</code>的部署必然涉及到服务器，那么就需要考虑到一些容灾处理，比如<code>ssr</code>服务被打爆了如何做降级等</li>
+<li>旧项目迁移成本很大，耗时耗力，最好有自动迁移的工具或者脚本支持</li>
+<li>对于没有服务端知识的前端开发来说学习成本略大，需要清楚服务端的一些配置等等</li>
+<li>容忍不了<code>SSR</code>缺点的情况下不建议用<code>SSR</code></li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="k.png"></p>
+<div class="aplayer no-destroy" data-id="热门" data-server="tencent" data-type="search" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tab</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tabxx.github.io/tab.github.io/2021/07/08/ssr/">https://tabxx.github.io/tab.github.io/2021/07/08/ssr/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tabxx.github.io/tab.github.io" target="_blank">Tab</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tab.github.io/tags/SSR/">SSR</a></div><div class="post_share"><div class="social-share" data-image="/tab.github.io/2021/07/08/ssr/ssr.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/tab.github.io/2021/08/09/femonitor/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/08/09/femonitor/IMG_2992.jpeg" onerror="onerror=null;src='/tab.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端异常监控平台</div></div></a></div><div class="next-post pull-right"><a href="/tab.github.io/2021/05/15/inject/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/05/15/inject/provide.jpeg" onerror="onerror=null;src='/tab.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue3.0——Provide/Inject的妙用</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/images/avatar.jpg" onerror="this.onerror=null;this.src='/tab.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tab</div><div class="author-info__description">Tab</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/tab.github.io/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tab.github.io/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tabxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8BSSR%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text">性能优化之SSR初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">SSR是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR%E4%BC%98%E5%8A%A3%E5%8A%BF"><span class="toc-number">1.2.</span> <span class="toc-text">SSR优劣势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR-%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%9C%AC%E8%B4%A8-%E8%99%9A%E6%8B%9Fdom"><span class="toc-number">1.3.</span> <span class="toc-text">SSR 实现的本质-虚拟dom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR%E5%AE%9E%E6%88%98-%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%E6%B8%B2%E6%9F%93"><span class="toc-number">1.4.</span> <span class="toc-text">SSR实战-大数据表格渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">1.4.1.</span> <span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A8%A1%E6%8B%9F%E6%8E%A5%E5%8F%A3%E6%95%B0%E6%8D%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">1. 模拟接口数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8EVue-cli3-element-UI%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.4.3.</span> <span class="toc-text">2. 基于Vue-cli3  + element UI搭建一个表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-nuxt-%E6%94%B9%E9%80%A0%E8%A1%A8%E6%A0%BC%E5%AE%9E%E7%8E%B0SSR"><span class="toc-number">1.4.4.</span> <span class="toc-text">3. nuxt 改造表格实现SSR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AF%B9%E6%AF%94%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.5.</span> <span class="toc-text">4. 对比结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">一些想法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/08/09/femonitor/" title="前端异常监控平台"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/08/09/femonitor/IMG_2992.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="前端异常监控平台"/></a><div class="content"><a class="title" href="/tab.github.io/2021/08/09/femonitor/" title="前端异常监控平台">前端异常监控平台</a><time datetime="2021-08-09T12:25:00.000Z" title="发表于 2021-08-09 20:25:00">2021-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/07/08/ssr/" title="性能优化之SSR初体验"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/07/08/ssr/ssr.jpg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="性能优化之SSR初体验"/></a><div class="content"><a class="title" href="/tab.github.io/2021/07/08/ssr/" title="性能优化之SSR初体验">性能优化之SSR初体验</a><time datetime="2021-07-08T06:37:22.000Z" title="发表于 2021-07-08 14:37:22">2021-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/05/15/inject/" title="Vue3.0——Provide/Inject的妙用"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/05/15/inject/provide.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="Vue3.0——Provide/Inject的妙用"/></a><div class="content"><a class="title" href="/tab.github.io/2021/05/15/inject/" title="Vue3.0——Provide/Inject的妙用">Vue3.0——Provide/Inject的妙用</a><time datetime="2021-05-15T15:07:43.000Z" title="发表于 2021-05-15 23:07:43">2021-05-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tab</div><div class="footer_custom_text">Hi, welcome to my <a href="https://tabxx.github.io/tab.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tab.github.io/js/utils.js"></script><script src="/tab.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'DCF6gBtqrrJYBofXtoomsqy4-gzGzoHsz',
+      appKey: 'e9JXPlIRUQ8XLONSE4dsozQA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

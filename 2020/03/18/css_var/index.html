@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>css变量那些事 | Tab</title><meta name="keywords" content="CSS"><meta name="author" content="Tab"><meta name="copyright" content="Tab"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="css变量那些事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css变量那些事">
+<meta property="og:url" content="https://tabxx.github.io/tab.github.io/2020/03/18/css_var/index.html">
+<meta property="og:site_name" content="Tab">
+<meta property="og:description" content="css变量那些事">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tabxx.github.io/tab.github.io/2020/03/18/css_var/topbg.jpg">
+<meta property="article:published_time" content="2020-03-18T02:35:42.000Z">
+<meta property="article:modified_time" content="2021-08-11T11:36:11.052Z">
+<meta property="article:author" content="Tab">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tabxx.github.io/tab.github.io/2020/03/18/css_var/topbg.jpg"><link rel="shortcut icon" href="/tab.github.io/images/favicon.ico"><link rel="canonical" href="https://tabxx.github.io/tab.github.io/2020/03/18/css_var/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tab.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?050bcda3cb147a8c0de1c17a337c5466";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/tab.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'css变量那些事',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-11 19:36:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/tab.github.io/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tab.github.io/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/tab.github.io/2020/03/18/css_var/topbg.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/tab.github.io/">Tab</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">css变量那些事</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-03-18T02:35:42.000Z" title="发表于 2020-03-18 10:35:42">2020-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-11T11:36:11.052Z" title="更新于 2021-08-11 19:36:11">2021-08-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="css变量那些事"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>  css变量也不是一个新词，但是说起css变量可能很多同学都不太熟悉，因为它的使用场景确实不太多，做过皮肤切换功能的同学估计是了解css变量带来的好处（变量是个好东西）。</p>
+<h3 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h3><p>   开始之前先了解下css变量的兼容性，避免一顿操作猛如虎，一看兼容泪满面。现在市面上主流的浏览器基本上都支持（IE6这玩意别跟我说主流），全球网站流量的 77％ 支持CSS变量，而美国已经接近90％。<br>   <img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="./Screenshot0119-1141.jpg" alt="e1b75cac7515da90a7ebdfe923f8f104.jpeg"></p>
+<h3 id="声明你的第一个css变量"><a href="#声明你的第一个css变量" class="headerlink" title="声明你的第一个css变量"></a>声明你的第一个css变量</h3><p>既然是变量，那么可以大胆的猜测它一定有作用域(后面会讲到)。我们先在全局也就是 <code>:root</code>  上定义，也意味着所有的DOM节点都能使用到全局的变量。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--title-color</span>: <span class="number">#1b1b1b</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>声明变量的语法是 <code> --*</code> ，至于命名规则就比较有意思了，css变量命名除了不能包含 <code>$</code> ，<code>[</code> ，<code> ^</code>，<code>(</code>，<code>%</code>等字符之外都是可以，甚至中文字也行。</p>
+<h3 id="使用你的第一个css变量"><a href="#使用你的第一个css变量" class="headerlink" title="使用你的第一个css变量"></a>使用你的第一个css变量</h3><p>刚刚我们已经在全局声明了一个<code>--title-color</code>，那么现在我们可以在任意位置去使用到它。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card-title</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--title-color)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 使用css变量的语法是<code>var(--*)</code>，怎么样，是不是很简单呢</p>
+<h3 id="css变量权重or作用域"><a href="#css变量权重or作用域" class="headerlink" title="css变量权重or作用域"></a>css变量权重or作用域</h3><p> 我们在全局声明一个<code>--color</code> ， 并且在 <code>div</code> 选择器下面再声明一个<code>--color</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123; </span><br><span class="line">    <span class="attribute">--color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">--color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据以往写css的经验，box这个div容器的字体应该是蓝色。事实证明确实是这样(⑉• •⑉)‥♡</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">我的蓝色来自于div</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">我的红色来自于根元素</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面这个简单的例子我们可以看出：当存在多个命名相同的变量时，还是会遵循<strong>CSS选择器的权重</strong>规则来取值，但是 <code>!important</code>  不能用在变量这里。</p>
+<h3 id="css变量缺省语法"><a href="#css变量缺省语法" class="headerlink" title="css变量缺省语法"></a>css变量缺省语法</h3><p>其实<code>var()</code>可以传递两个参数，它的完整语法是<code>var( &lt;自定义属性名&gt; [, &lt;默认值 ]? )</code>.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123; </span><br><span class="line">    <span class="attribute">--size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="built_in">var</span>(--title-size, <span class="number">16px</span>); </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--size, #ddd);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>看完上面这段代码是不是想说，so easy，<code>div</code> 最后编译的结果是肯定是这样子的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>; </span><br><span class="line">    <span class="attribute">background-color</span>:  <span class="number">#ddd</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>有这种想法的同学还是太年轻了，结果是这样的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>; </span><br><span class="line">    <span class="attribute">background-color</span>:  transparent;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>纳尼？<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="./question.png" alt="4a69f941957fa542c2f37d379b1f0d4b.png"></p>
+<p>var第二个参数默认值，当且仅当使用的<strong>变量未定义</strong>时才能生效；如果是变量值无效的情况，第二个参数也是没有什么作用的。</p>
+<p>上面这例子<code>--size</code> 已经被定义了，也就是说会变成<code>background-color: 12px;</code> ，一看就知道这语法是错误的，那么最终会取到浏览器默认的背景色也就是<code>transparent</code>。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>到这里css变量的基本使用方法已经差不多了，下面来看看它的应用场景，加深点印象。</p>
+<h5 id="主题皮肤切换"><a href="#主题皮肤切换" class="headerlink" title="主题皮肤切换"></a>主题皮肤切换</h5><p>拿一个最简单的例子来理解一下主题皮肤切换的效果。需求是这样的：有一个容器的字体颜色，在白色主题下显示黑色，在黑色主题下显示白色，默认白皮肤（够简单吧）；<br>直接上代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-pseudo">:root</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">--card-title</span>: <span class="selector-id">#000</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-tag">body</span><span class="selector-attr">[data-theme=<span class="string">&quot;black&quot;</span>]</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">--card-title</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    color: var(--card-title);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span> 我是一个会变色的标题 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>剩下的我们就只需要动态修改<code>body</code> 的 <code>data-theme</code> 属性的值来切换主题。有没有同学想说，那我直接js修改<code>box</code>的<code>color</code>属性不就完事了？？？这种想法很危险，万一是网页全局主题修改，涉及到的配色有很多呢，用js动态的一个个改不合适吧。</p>
+<h5 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h5><p>需求：根据不同的屏幕尺寸显示不同的字体大小<br>还是直接上代码吧</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123; </span><br><span class="line">    <span class="attribute">--main-font-size</span>: <span class="number">16px</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-tag">media</span> <span class="selector-tag">all</span> <span class="selector-tag">and</span> (<span class="selector-tag">max-width</span>: 1024<span class="selector-tag">px</span>) &#123;</span><br><span class="line">    :root &#123; </span><br><span class="line">        <span class="selector-tag">--main-font-size</span>: 14<span class="selector-tag">px</span>;</span><br><span class="line">     &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>几行代码就能够实现，是不是很刺激。</p>
+<p>最后在补充好几点：<br>1、css变量<strong>不能在属性名上使用</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123; <span class="attribute">--bgc</span>: background-color;  &#125;</span><br><span class="line">div &#123; var(--bgc): red; &#125;</span><br></pre></td></tr></table></figure>
+<p>2、不要想着和<code>px</code> 这种单位搞个拼接， 不支持</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123; <span class="attribute">--size</span>: <span class="number">20</span>;  &#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123; <span class="attribute">font-size</span>: <span class="built_in">var</span>(--size)<span class="built_in">px</span>; &#125;</span><br></pre></td></tr></table></figure>
+<p>3、变量之间可以相互定义</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123; </span><br><span class="line">    <span class="attribute">--color</span>: red;</span><br><span class="line">    --bg-color: var(--color); // 红色</span><br><span class="line"> &#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123; <span class="attribute">background-color</span>: <span class="built_in">var</span>(--bg-color); &#125; </span><br></pre></td></tr></table></figure>
+
+<div class="aplayer no-destroy" data-id="热门" data-server="tencent" data-type="search" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tab</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tabxx.github.io/tab.github.io/2020/03/18/css_var/">https://tabxx.github.io/tab.github.io/2020/03/18/css_var/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tabxx.github.io/tab.github.io" target="_blank">Tab</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tab.github.io/tags/CSS/">CSS</a></div><div class="post_share"><div class="social-share" data-image="/tab.github.io/2020/03/18/css_var/topbg.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/tab.github.io/2021/02/23/vue3-reactive-ref/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/02/23/vue3-reactive-ref/reactive.png" onerror="onerror=null;src='/tab.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vue3.0——reactive和ref原理</div></div></a></div><div class="next-post pull-right"><a href="/tab.github.io/2019/11/18/computed/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2019/11/18/computed/topbg.jpg" onerror="onerror=null;src='/tab.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">computed 实现原理</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/images/avatar.jpg" onerror="this.onerror=null;this.src='/tab.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tab</div><div class="author-info__description">Tab</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/tab.github.io/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tab.github.io/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tabxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81"><span class="toc-number">1.</span> <span class="toc-text">浏览器支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAcss%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">声明你的第一个css变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAcss%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">使用你的第一个css变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css%E5%8F%98%E9%87%8F%E6%9D%83%E9%87%8Dor%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.</span> <span class="toc-text">css变量权重or作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css%E5%8F%98%E9%87%8F%E7%BC%BA%E7%9C%81%E8%AF%AD%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">css变量缺省语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">6.</span> <span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E7%9A%AE%E8%82%A4%E5%88%87%E6%8D%A2"><span class="toc-number">6.0.1.</span> <span class="toc-text">主题皮肤切换</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-number">6.0.2.</span> <span class="toc-text">响应式布局</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/08/09/femonitor/" title="前端异常监控平台"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/08/09/femonitor/IMG_2992.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="前端异常监控平台"/></a><div class="content"><a class="title" href="/tab.github.io/2021/08/09/femonitor/" title="前端异常监控平台">前端异常监控平台</a><time datetime="2021-08-09T12:25:00.000Z" title="发表于 2021-08-09 20:25:00">2021-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/07/08/ssr/" title="性能优化之SSR初体验"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/07/08/ssr/ssr.jpg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="性能优化之SSR初体验"/></a><div class="content"><a class="title" href="/tab.github.io/2021/07/08/ssr/" title="性能优化之SSR初体验">性能优化之SSR初体验</a><time datetime="2021-07-08T06:37:22.000Z" title="发表于 2021-07-08 14:37:22">2021-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/05/15/inject/" title="Vue3.0——Provide/Inject的妙用"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/05/15/inject/provide.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="Vue3.0——Provide/Inject的妙用"/></a><div class="content"><a class="title" href="/tab.github.io/2021/05/15/inject/" title="Vue3.0——Provide/Inject的妙用">Vue3.0——Provide/Inject的妙用</a><time datetime="2021-05-15T15:07:43.000Z" title="发表于 2021-05-15 23:07:43">2021-05-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tab</div><div class="footer_custom_text">Hi, welcome to my <a href="https://tabxx.github.io/tab.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tab.github.io/js/utils.js"></script><script src="/tab.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'DCF6gBtqrrJYBofXtoomsqy4-gzGzoHsz',
+      appKey: 'e9JXPlIRUQ8XLONSE4dsozQA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
