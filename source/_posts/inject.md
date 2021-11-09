@@ -1,7 +1,7 @@
 ---
 title: Vue3.0——Provide/Inject的妙用
 date: 2021-05-15 23:07:43
-cover: 'top.jpg'
+cover: 'provide.jpeg'
 tags: Vue
 ---
 
