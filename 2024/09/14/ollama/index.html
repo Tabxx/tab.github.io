@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mac本地部署大模型 | Tab</title><meta name="keywords" content="LLM"><meta name="author" content="Tab"><meta name="copyright" content="Tab"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Mac本地部署大模型随着大型语言模型（LLM）的发展，人们越来越重视AI的潜力。但是，使用云服务或在线API可能会带来数据隐私、安全性等问题。本文将展示如何在本地机器上部署一个Ollama模型，实现快速高效的自主语义分析和生成能力。 安装OllamaOllama 简介 Ollama 是一个基于 Go 语言开发的可以本地运行大模型的开源框架。  官网：ollama.com&#x2F;GitHub 地址：git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac本地部署大模型">
+<meta property="og:url" content="https://tabxx.github.io/tab.github.io/2024/09/14/ollama/index.html">
+<meta property="og:site_name" content="Tab">
+<meta property="og:description" content="Mac本地部署大模型随着大型语言模型（LLM）的发展，人们越来越重视AI的潜力。但是，使用云服务或在线API可能会带来数据隐私、安全性等问题。本文将展示如何在本地机器上部署一个Ollama模型，实现快速高效的自主语义分析和生成能力。 安装OllamaOllama 简介 Ollama 是一个基于 Go 语言开发的可以本地运行大模型的开源框架。  官网：ollama.com&#x2F;GitHub 地址：git">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tabxx.github.io/tab.github.io/2024/09/14/ollama/icon.jpeg">
+<meta property="article:published_time" content="2024-09-14T08:28:43.000Z">
+<meta property="article:modified_time" content="2025-03-19T01:46:11.163Z">
+<meta property="article:author" content="Tab">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tabxx.github.io/tab.github.io/2024/09/14/ollama/icon.jpeg"><link rel="shortcut icon" href="/tab.github.io/images/favicon.ico"><link rel="canonical" href="https://tabxx.github.io/tab.github.io/2024/09/14/ollama/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tab.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?050bcda3cb147a8c0de1c17a337c5466";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/tab.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mac本地部署大模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-03-19 09:46:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/tab.github.io/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tab.github.io/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/tab.github.io/2024/09/14/ollama/icon.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/tab.github.io/">Tab</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Mac本地部署大模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-14T08:28:43.000Z" title="发表于 2024-09-14 16:28:43">2024-09-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-19T01:46:11.163Z" title="更新于 2025-03-19 09:46:11">2025-03-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Mac本地部署大模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Mac本地部署大模型"><a href="#Mac本地部署大模型" class="headerlink" title="Mac本地部署大模型"></a>Mac本地部署大模型</h1><p>随着大型语言模型（LLM）的发展，人们越来越重视AI的潜力。但是，使用云服务或在线API可能会带来数据隐私、安全性等问题。本文将展示如何在本地机器上部署一个<code>Ollama</code>模型，实现快速高效的自主语义分析和生成能力。</p>
+<h2 id="安装Ollama"><a href="#安装Ollama" class="headerlink" title="安装Ollama"></a>安装Ollama</h2><h3 id="Ollama-简介"><a href="#Ollama-简介" class="headerlink" title="Ollama 简介"></a>Ollama 简介</h3><blockquote>
+<p>Ollama 是一个基于 Go 语言开发的可以本地运行大模型的开源框架。</p>
+</blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://ollama.com/">ollama.com/</a><br>GitHub 地址：<a target="_blank" rel="noopener" href="https://github.com/ollama/ollama">github.com/ollama/olla…</a></p>
+<h3 id="下载安装Ollama"><a href="#下载安装Ollama" class="headerlink" title="下载安装Ollama"></a>下载安装Ollama</h3><p>在<code>Ollama</code>官网根据自己的操作系统选择对应的安装包，我用的<code>Macbook Air M1</code>，选择<code>macOS</code>下载安装。<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="download.png" alt="下载Ollama"></p>
+<h3 id="本地验证"><a href="#本地验证" class="headerlink" title="本地验证"></a>本地验证</h3><p>下载安装完成后一般会自动启动<code>Ollama</code>服务，也可以自己点击ollama应用或者命令行运行<code>ollama serve</code>启动服务。<br>命令行执行<code>ollama -v</code>显示版本号说明安装成功。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yuxinxin@yuxinxindeMacBook-Air.local ~ ollama -v</span><br><span class="line">ollama version is <span class="number">0</span>.<span class="number">3</span>.<span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h3><p>安装完后默认提示安装<code>llama2</code>大模型，也可以下载自己需要的模型。</p>
+<p>支持的模型官网：<a target="_blank" rel="noopener" href="https://ollama.com/library">https://ollama.com/library</a></p>
+<p>命令行下载模型使用<code>ollama pull xxx</code>命令，如下载<code>llama3.1:8b</code>：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama pull llama3.<span class="number">1</span>:<span class="number">8</span>b</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="使用Ollama"><a href="#使用Ollama" class="headerlink" title="使用Ollama"></a>使用Ollama</h2><h3 id="命令行对话"><a href="#命令行对话" class="headerlink" title="命令行对话"></a>命令行对话</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yuxinxin@yuxinxindeMacBook-Air.local ~ ollama run llama3.<span class="number">1</span>:<span class="number">8</span>b</span><br><span class="line">&gt;&gt;&gt; 你好呀</span><br><span class="line">你好！很高兴和你互动！你想谈论什么呢？</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用可视化页面"><a href="#使用可视化页面" class="headerlink" title="使用可视化页面"></a>使用可视化页面</h3><p>使用cherry studio调用本地ollama</p>
+<ol>
+<li>安装Cherry Studio就不描述了，按照官网教程安装即可</li>
+<li>打开Cherry Studio的设置页面<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="cherry_setting.png" alt="设置页面"></li>
+<li>API密钥随便填，本地没有校验</li>
+<li>API地址填写：<a target="_blank" rel="noopener" href="http://localhost:11434/v1/">http://localhost:11434/v1/</a></li>
+<li>点击底部“管理”按钮，添加需要的模型<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="models.png" alt="模型选择"></li>
+<li>进入对话页面，选择需要的模型，我这里本地部署里deepseek r1 7b模型<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="choose_model.png" alt="对话模型选择"></li>
+<li>对话<br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="chat.png" alt="对话"></li>
+</ol>
+<h2 id="ollama-暴露的接口"><a href="#ollama-暴露的接口" class="headerlink" title="ollama 暴露的接口"></a>ollama 暴露的接口</h2><p>ollama 提供了 RESTful API，方便开发者将其集成到其他应用程序中。通过这些接口，可以实现更灵活的交互和自动化任务。</p>
+<h3 id="（一）接口地址"><a href="#（一）接口地址" class="headerlink" title="（一）接口地址"></a>（一）接口地址</h3><p>ollama的API地址为<code>http://localhost:11434/api</code>，所有 API 请求都基于此地址。</p>
+<h3 id="（二）常见接口示例"><a href="#（二）常见接口示例" class="headerlink" title="（二）常见接口示例"></a>（二）常见接口示例</h3><ol>
+<li><p>对话接口</p>
+<ul>
+<li><p>请求：<br>  使用POST请求到<code>http://localhost:11434/api/chat</code>。请求体为 JSON 格式，包含以下字段：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;model&quot;</span>: <span class="string">&quot;deepseek-r1:latest&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;messages&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;content&quot;</span>: <span class="string">&quot;请写一首关于春天的诗&quot;</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;stream&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，model指定使用的模型，prompt为输入的文本提示。</p>
+</li>
+<li><p>响应：<br>成功时，响应体为 JSON 格式，包含生成的文本。例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;model&quot;</span>: <span class="string">&quot;deepseek-r1:latest&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;created_at&quot;</span>: <span class="string">&quot;2025-03-18T09:16:22.980721Z&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;content&quot;</span>: <span class="string">&quot;&lt;think&gt;\n好，用户让写一首关于春天的诗。首先，我需要确定诗的主题和情感基调。春天通常让人联想到生机、希望和温馨的感觉，所以我想通过自然景物来表达这种感觉。\n\n接下来，考虑诗的结构。中文诗常用四句或八句，这里用五言律诗比较合适，每首五句，押韵。这样结构清晰，容易表达情感。\n\n然后是具体的意象选择。春天有花、柳树、燕子等元素，这些都能很好地表现春天的生机和活力。我打算用“繁花”、“细雨”、“新绿”来描绘春天的景象。\n\n再考虑诗的内容安排。开头点题，中间展开，结尾总结。比如第一句点明主题，第二句描述春天的到来，第三句和第四句用自然现象表现春天的特点，最后两句表达对春天的喜爱和结束。\n\n在用词上，要简洁优美，避免生僻字，让读者容易理解。同时注意押韵，使整首诗读起来流畅自然。\n\n最后，写完后还要写一个赏析部分，解释诗中的意象和情感表达，让用户更好地理解和感受这首诗的魅力。\n&lt;/think&gt;\n\n《春》\n春来别样新,繁花动地深。\n细雨迎风落,新绿随云侵。\n喜燕呼莺语,欢蛙奏琴音。\n此景年年见,常驻Memory。\n\n赏析：这首作品描绘了春天的景象，通过“繁花动地深”和“新绿随云侵”的意象展现春色的浓郁。尾联以“燕呼莺语”、“蛙奏琴音”寄托了对春天的热爱与怀念，表达了年复一年春景常驻记忆的情感。&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;done_reason&quot;</span>: <span class="string">&quot;stop&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;done&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;total_duration&quot;</span>: <span class="number">41346353792</span>,</span><br><span class="line">    <span class="attr">&quot;load_duration&quot;</span>: <span class="number">571510084</span>,</span><br><span class="line">    <span class="attr">&quot;prompt_eval_count&quot;</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">&quot;prompt_eval_duration&quot;</span>: <span class="number">4194000000</span>,</span><br><span class="line">    <span class="attr">&quot;eval_count&quot;</span>: <span class="number">371</span>,</span><br><span class="line">    <span class="attr">&quot;eval_duration&quot;</span>: <span class="number">36578000000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li>列出模型<ul>
+<li>请求：<br>使用GET请求到<code>http://localhost:11434/api/tags</code>。</li>
+<li>响应：<br>响应体为 JSON 格式，列出所有已安装的模型信息，包括模型名称、大小等。例如：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;deepseek-r1:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;model&quot;</span>: <span class="string">&quot;deepseek-r1:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;modified_at&quot;</span>: <span class="string">&quot;2025-02-01T22:20:07.879258573+08:00&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;size&quot;</span>: <span class="number">4683075271</span>,</span><br><span class="line">        <span class="attr">&quot;digest&quot;</span>: <span class="string">&quot;0a8c266910232fd3291e71e5ba1e058cc5af9d411192cf88b6d30e92b6e73163&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;details&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;parent_model&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;format&quot;</span>: <span class="string">&quot;gguf&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;qwen2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;families&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;qwen2&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;parameter_size&quot;</span>: <span class="string">&quot;7.6B&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;quantization_level&quot;</span>: <span class="string">&quot;Q4_K_M&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;llava:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;model&quot;</span>: <span class="string">&quot;llava:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;modified_at&quot;</span>: <span class="string">&quot;2024-12-26T12:59:51.582141696+08:00&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;size&quot;</span>: <span class="number">4733363377</span>,</span><br><span class="line">        <span class="attr">&quot;digest&quot;</span>: <span class="string">&quot;8dd30f6b0cb19f555f2c7a7ebda861449ea2cc76bf1f44e262931f45fc81d081&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;details&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;parent_model&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;format&quot;</span>: <span class="string">&quot;gguf&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;llama&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;families&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;llama&quot;</span>,</span><br><span class="line">                <span class="string">&quot;clip&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;parameter_size&quot;</span>: <span class="string">&quot;7B&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;quantization_level&quot;</span>: <span class="string">&quot;Q4_0&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;nomic-embed-text:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;model&quot;</span>: <span class="string">&quot;nomic-embed-text:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;modified_at&quot;</span>: <span class="string">&quot;2024-11-12T20:11:39.707148179+08:00&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;size&quot;</span>: <span class="number">274302450</span>,</span><br><span class="line">        <span class="attr">&quot;digest&quot;</span>: <span class="string">&quot;0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;details&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;parent_model&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;format&quot;</span>: <span class="string">&quot;gguf&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;nomic-bert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;families&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;nomic-bert&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;parameter_size&quot;</span>: <span class="string">&quot;137M&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;quantization_level&quot;</span>: <span class="string">&quot;F16&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;qwen2.5:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;model&quot;</span>: <span class="string">&quot;qwen2.5:latest&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;modified_at&quot;</span>: <span class="string">&quot;2024-09-21T16:19:27.918562447+08:00&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;size&quot;</span>: <span class="number">4683087332</span>,</span><br><span class="line">        <span class="attr">&quot;digest&quot;</span>: <span class="string">&quot;845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;details&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;parent_model&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;format&quot;</span>: <span class="string">&quot;gguf&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;qwen2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;families&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;qwen2&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;parameter_size&quot;</span>: <span class="string">&quot;7.6B&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;quantization_level&quot;</span>: <span class="string">&quot;Q4_K_M&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>通过在 Mac 上本地部署 ollama 并利用其暴露的接口，无论是进行日常的创意写作、知识问答，还是开发集成 AI 功能的应用程序，都变得触手可及。希望这篇博客能帮助你顺利开启 ollama 的本地部署和使用之旅，探索更多人工智能的奇妙应用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tab</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tabxx.github.io/tab.github.io/2024/09/14/ollama/">https://tabxx.github.io/tab.github.io/2024/09/14/ollama/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tabxx.github.io/tab.github.io" target="_blank">Tab</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tab.github.io/tags/LLM/">LLM</a></div><div class="post_share"><div class="social-share" data-image="/tab.github.io/2024/09/14/ollama/icon.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/tab.github.io/2022/04/02/pnpm/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2022/04/02/pnpm/pnpm.jpeg" onerror="onerror=null;src='/tab.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">pnpm</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/images/avatar.jpg" onerror="this.onerror=null;this.src='/tab.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tab</div><div class="author-info__description">Tab</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/tab.github.io/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/tab.github.io/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tabxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mac%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">Mac本地部署大模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Ollama"><span class="toc-number">1.1.</span> <span class="toc-text">安装Ollama</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ollama-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">Ollama 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Ollama"><span class="toc-number">1.1.2.</span> <span class="toc-text">下载安装Ollama</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%AA%8C%E8%AF%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">本地验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.4.</span> <span class="toc-text">下载模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Ollama"><span class="toc-number">1.2.</span> <span class="toc-text">使用Ollama</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AF%B9%E8%AF%9D"><span class="toc-number">1.2.1.</span> <span class="toc-text">命令行对话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">使用可视化页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ollama-%E6%9A%B4%E9%9C%B2%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.3.</span> <span class="toc-text">ollama 暴露的接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">（一）接口地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">（二）常见接口示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#END"><span class="toc-number">1.4.</span> <span class="toc-text">END</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2024/09/14/ollama/" title="Mac本地部署大模型"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2024/09/14/ollama/icon.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="Mac本地部署大模型"/></a><div class="content"><a class="title" href="/tab.github.io/2024/09/14/ollama/" title="Mac本地部署大模型">Mac本地部署大模型</a><time datetime="2024-09-14T08:28:43.000Z" title="发表于 2024-09-14 16:28:43">2024-09-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2022/04/02/pnpm/" title="pnpm"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2022/04/02/pnpm/pnpm.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="pnpm"/></a><div class="content"><a class="title" href="/tab.github.io/2022/04/02/pnpm/" title="pnpm">pnpm</a><time datetime="2022-04-02T06:49:41.000Z" title="发表于 2022-04-02 14:49:41">2022-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tab.github.io/2021/08/09/femonitor/" title="前端异常监控平台"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/tab.github.io/2021/08/09/femonitor/IMG_2992.jpeg" onerror="this.onerror=null;this.src='/tab.github.io/img/404.jpg'" alt="前端异常监控平台"/></a><div class="content"><a class="title" href="/tab.github.io/2021/08/09/femonitor/" title="前端异常监控平台">前端异常监控平台</a><time datetime="2021-08-09T12:25:00.000Z" title="发表于 2021-08-09 20:25:00">2021-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Tab</div><div class="footer_custom_text">Hi, welcome to my <a href="https://tabxx.github.io/tab.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tab.github.io/js/utils.js"></script><script src="/tab.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'DCF6gBtqrrJYBofXtoomsqy4-gzGzoHsz',
+      appKey: 'e9JXPlIRUQ8XLONSE4dsozQA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
